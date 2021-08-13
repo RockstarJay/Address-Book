@@ -1,11 +1,11 @@
 package com.jaybhagat.addressbook;
 
 /*
- * class to add a contact to the Address Book
- * edit a contact from the address book
+ * class for the Address Book
  * getting input from user and set that input in the constructor
  * adding contact to address book
  * editing person details
+ * deleting a contact
  * @author com.jaybhagat
  */
 
@@ -18,7 +18,7 @@ public class AddressBookMain {
     
     public static void main(String[] args) {
         Contact contact = new Contact();
-        System.out.println("Press 1 -  To Add a Contact\nPress 2 - To Edit a Contact");
+        System.out.println("Press 1 -  To Add a Contact\nPress 2 - To Edit a Contact\\nPress 3 - To Delete a Contact");
         int choice = scanner.nextInt();
 
         switch (choice) {
@@ -27,6 +27,9 @@ public class AddressBookMain {
                 break;
             case 2:
                 editContact(contact);
+                break;
+            case 3:
+                deleteContact(contact);
                 break;
             default:
                 System.out.println("Invalid input");
@@ -112,6 +115,19 @@ public class AddressBookMain {
                     System.out.println(c.getFirstName() + " " + c.getLastName() + " " + c.getAddress() + " " + c.getCity() + " " + c.getState() + " "  + c.getZipCode()
                             + " " + c.getPhoneNumber() + " " + c.getEmail());
                 }
+            }
+        }
+    }
+    
+    // delete a contact
+    public static void deleteContact(Contact contact) {
+        System.out.print("Enter First Name: ");
+        String firstName = scanner.next();
+        System.out.print("Enter Last Name: ");
+        String lastName = scanner.next();
+        for (int index = 0; index < contactArrayList.size(); index++) {
+            if (contactArrayList.get(index).getFirstName().equals(firstName) && contactArrayList.get(index).getLastName().equals(lastName)) {
+                contactArrayList.remove(index);
             }
         }
     }
